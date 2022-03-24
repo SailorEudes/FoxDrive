@@ -24,12 +24,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'username' => $this->faker->userName,
-            'language' => $this->faker->languageCode,
-            'country' => $this->faker->country,
-            'timezone' => $this->faker->timezone,
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'username' => $this->faker->userName(),
+            'language' => $this->faker->languageCode(),
+            'country' => $this->faker->country(),
+            'timezone' => $this->faker->timezone(),
             'email' => $this->faker->numberBetween(1, 10000).$this->faker->unique()->safeEmail(),
             'email_verified_at' => Carbon::now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

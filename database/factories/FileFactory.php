@@ -23,10 +23,10 @@ class FileFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->slug.'.'.$this->faker->fileExtension,
+            'name' => $this->faker->slug().'.'.$this->faker->fileExtension(),
             'description' => $this->faker->realTextBetween(500, 1000),
             'file_name' => 's5d8w4w5d8w4w5w5w',
-            'mime' => $this->faker->mimeType,
+            'mime' => $this->faker->mimeType(),
             'file_size' => 159556,
             'type' => Arr::random(['audio', 'video', 'text', 'archive', 'generic']),
         ];
