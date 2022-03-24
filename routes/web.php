@@ -14,8 +14,8 @@
 use App\Http\Controllers\SharesController;
 use App\Http\Controllers\SpaceUsageController;
 
-Route::group(['prefix' => 'secure/drive', 'middleware' => 'web'], function () {
-    Route::group(['middleware' => 'auth'], function () {
+Route::prefix('secure/drive')->middleware('web')->group(function () {
+    Route::middleware('auth')->group(function () {
         //FOLDERS
         Route::get('folders/find', 'FoldersController@show');
         Route::get('folders', 'FoldersController@index');
