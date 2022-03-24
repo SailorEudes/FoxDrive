@@ -11,6 +11,10 @@
 |
 */
 
+use App\Http\Controllers\CopyEntriesController;
+use App\Http\Controllers\DriveEntriesController;
+use App\Http\Controllers\MoveFileEntriesController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntrySyncInfoController;
 use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FoldersController;
@@ -43,10 +47,10 @@ Route::prefix('v1')->group(function () {
 
         // ENTRIES
         Route::post('entries/sync-info', [EntrySyncInfoController::class, 'index']);
-        Route::get('entries', 'DriveEntriesController@index');
-        Route::post('entries', '\Common\Files\Controllers\FileEntriesController@store');
-        Route::post('entries/move', 'MoveFileEntriesController@move');
-        Route::post('entries/copy', 'CopyEntriesController@copy');
+        Route::get('entries', [DriveEntriesController::class, 'index']);
+        Route::post('entries', [\Common\Files\Controllers\FileEntriesController::class, 'store']);
+        Route::post('entries/move', [MoveFileEntriesController::class, 'move']);
+        Route::post('entries/copy', [CopyEntriesController::class, 'copy']);
         Route::post('entries/restore', [RestoreDeletedEntriesController::class, 'restore']);
         Route::put('entries/{id}', [FileEntriesController::class, 'update']);
         Route::delete('entries', [FileEntriesController::class, 'destroy']);
@@ -81,8 +85,8 @@ Route::prefix('v1')->group(function () {
     // AUTH
     Route::post('auth/register', [RegisterController::class, 'register']);
     Route::post('auth/login', [GetAccessTokenController::class, 'login']);
-    Route::get('auth/social/{provider}/callback', '\Common\Auth\Controllers\SocialAuthController@loginCallback');
-    Route::post('auth/password/email', '\Common\Auth\Controllers\SendPasswordResetEmailController@sendResetLinkEmail');
+    Route::get('auth/social/{provider}/callback', [\Common\Auth\Controllers\SocialAuthController::class, 'loginCallback']);
+    Route::post('auth/password/email', [\Common\Auth\Controllers\SendPasswordResetEmailController::class, 'sendResetLinkEmail']);
 
     // REMOTE CONFIG
     Route::get('remote-config/mobile', [BootstrapController::class, 'getMobileBootstrapData']);
