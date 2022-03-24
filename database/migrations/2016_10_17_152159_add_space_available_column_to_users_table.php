@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddSpaceAvailableColumnToUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -28,4 +28,4 @@ class AddSpaceAvailableColumnToUsersTable extends Migration
             $table->dropColumn('space_available');
         });
     }
-}
+};

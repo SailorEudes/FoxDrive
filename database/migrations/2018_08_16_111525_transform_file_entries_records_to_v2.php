@@ -5,7 +5,7 @@ use Common\Files\Traits\GetsEntryTypeFromMime;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Collection;
 
-class TransformFileEntriesRecordsToV2 extends Migration
+return new class extends Migration
 {
     use GetsEntryTypeFromMime;
 
@@ -74,4 +74,4 @@ class TransformFileEntriesRecordsToV2 extends Migration
     {
         //
     }
-}
+};
