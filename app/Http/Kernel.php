@@ -8,7 +8,7 @@ use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustHosts;
 use App\Http\Middleware\VerifyCsrfToken;
 use Common\Core\Middleware\PrerenderIfCrawler;
-use Fideloper\Proxy\TrustProxies;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
