@@ -49,7 +49,7 @@ class PaypalFetchPlanRequest extends AbstractRestRequest
     public function getData()
     {
         $this->validate('planId');
-        return array();
+        return [];
     }
     /**
      * Get HTTP Method.

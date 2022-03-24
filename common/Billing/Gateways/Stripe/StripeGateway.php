@@ -33,9 +33,9 @@ class StripeGateway implements GatewayInterface
     {
         $this->gateway = Omnipay::create('Stripe');
 
-        $this->gateway->initialize(array(
+        $this->gateway->initialize([
             'apiKey' => config('services.stripe.secret'),
-        ));
+        ]);
 
         $this->plans = new StripePlans($this->gateway);
         $this->subscriptions = new StripeSubscriptions($this->gateway);

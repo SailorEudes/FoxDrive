@@ -56,9 +56,9 @@ class StripeCredentialsValidator implements SettingsValidator
         /** @var \Omnipay\Stripe\Gateway $gateway */
         $gateway = Omnipay::create('Stripe');
 
-        $gateway->initialize(array(
+        $gateway->initialize([
             'apiKey' => config('services.stripe.secret'),
-        ));
+        ]);
 
         return $gateway;
     }
