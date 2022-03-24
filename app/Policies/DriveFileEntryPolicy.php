@@ -38,8 +38,8 @@ class DriveFileEntryPolicy extends FileEntryPolicy
     ): bool {
         // if we're requesting resources for a particular workspace,let user view the resources
         // as long as they are a member, even without explicit "files.view" permission
-        if (!$entryIds && !$this->activeWorkspace->personal()) {
-            return !!$this->activeWorkspace->member($currentUser->id);
+        if (! $entryIds && ! $this->activeWorkspace->personal()) {
+            return (bool) $this->activeWorkspace->member($currentUser->id);
         }
 
         return parent::index($currentUser, $entryIds, $userId);
@@ -78,8 +78,8 @@ class DriveFileEntryPolicy extends FileEntryPolicy
         if (parent::userCan($currentUser, $permission, $entries)) {
             return true;
 
-            // if we're not in personal workspace, check if user has permissions via workspace
-        } elseif (!$this->activeWorkspace->personal()) {
+        // if we're not in personal workspace, check if user has permissions via workspace
+        } elseif (! $this->activeWorkspace->personal()) {
             // first check if user is a member of active workspace
             if (
                 $workspaceMember = $this->activeWorkspace->member(
@@ -118,7 +118,7 @@ class DriveFileEntryPolicy extends FileEntryPolicy
         $password = $this->request->get('password');
 
         // check password first, if needed
-        if (!$this->passwordIsValid($link, $password)) {
+        if (! $this->passwordIsValid($link, $password)) {
             return false;
         }
 
@@ -140,6 +140,7 @@ class DriveFileEntryPolicy extends FileEntryPolicy
 
         if ($this->request->has('shareable_link')) {
             $linkId = $this->request->get('shareable_link');
+
             return app(ShareableLink::class)->findOrFail($linkId);
         }
 
@@ -151,9 +152,10 @@ class DriveFileEntryPolicy extends FileEntryPolicy
         ?string $password
     ): bool {
         // link has no password
-        if (!$link->password) {
+        if (! $link->password) {
             return true;
         }
+
         return Hash::check($password, $link->password);
     }
 }

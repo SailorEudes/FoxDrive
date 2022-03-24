@@ -2,7 +2,6 @@
 
 namespace App\Services\Shares\Traits;
 
-
 use Illuminate\Support\Arr;
 
 trait GeneratesSharePermissions

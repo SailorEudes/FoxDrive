@@ -29,8 +29,9 @@ use Illuminate\Database\Eloquent\Model;
 class SocialProfile extends Model
 {
     protected $guarded = ['id'];
-
-    protected $dates = ['access_expires_at'];
+    protected $casts = [
+        'access_expires_at' => 'datetime',
+    ];
 
     public function user()
     {

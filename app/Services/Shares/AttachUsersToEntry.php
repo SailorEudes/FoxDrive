@@ -41,7 +41,7 @@ class AttachUsersToEntry
         // permissions on each user are expected
         $users = $this->user->whereIn('email', $emails)->get();
 
-        $transformedUsers = $users->map(function(User $user) use($permissions) {
+        $transformedUsers = $users->map(function (User $user) use ($permissions) {
             return ['id' => $user->id, 'permissions' => $this->generateSharePermissions($permissions)];
         });
 

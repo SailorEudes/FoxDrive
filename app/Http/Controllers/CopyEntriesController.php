@@ -47,7 +47,7 @@ class CopyEntriesController extends BaseController
 
         $totalBytes = $this->entry->whereIn('id', $entryIds)->sum('file_size');
         $usage = app(GetUserSpaceUsage::class);
-        if (!$usage->hasEnoughSpaceToUpload($totalBytes)) {
+        if (! $usage->hasEnoughSpaceToUpload($totalBytes)) {
             return $this->error(
                 __(
                     'You have exhausted your allowed space of :space. Delete some files or upgrade your plan.',
@@ -135,7 +135,7 @@ class CopyEntriesController extends BaseController
             ->where('parent_id', $original->id)
             ->pluck('id');
 
-        if (!$entryIds->isEmpty()) {
+        if (! $entryIds->isEmpty()) {
             $this->copyEntries($entryIds, $copy->id);
         }
     }
@@ -153,13 +153,13 @@ class CopyEntriesController extends BaseController
 
         // if no parent ID is specified and we are copying into the
         // same users drive, we can copy into the same folder as original
-        if (!$parentId && $copyingIntoSameDrive) {
+        if (! $parentId && $copyingIntoSameDrive) {
             $parentId = $original->parent_id;
         }
 
         // if we are copying into same folder, add " - Copy" to the end of copies name
         if ($parentId === $original->parent_id && $copyingIntoSameDrive) {
-            $newName = "$original->name - " . __('Copy');
+            $newName = "$original->name - ".__('Copy');
         }
 
         /**

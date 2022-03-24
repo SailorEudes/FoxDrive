@@ -60,7 +60,7 @@ class SetPermissionsOnEntry
     public function execute($entry = null)
     {
         $entryPermissions = [];
-        $entryUser = Arr::first($entry['users'] ?? [], function($entryUser) {
+        $entryUser = Arr::first($entry['users'] ?? [], function ($entryUser) {
             return $entryUser['id'] === $this->user->id;
         });
 
@@ -71,6 +71,7 @@ class SetPermissionsOnEntry
         }
 
         $entry['permissions'] = $entryPermissions;
+
         return $entry;
     }
 
@@ -91,7 +92,7 @@ class SetPermissionsOnEntry
             return false;
         }
 
-        if (!$this->workspacePermissions) {
+        if (! $this->workspacePermissions) {
             $this->workspacePermissions = app(ActiveWorkspace::class)->member($this->user->id)->permissions->pluck('name')->toArray();
         }
 

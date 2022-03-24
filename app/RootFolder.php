@@ -9,8 +9,11 @@ use Common\Workspaces\ActiveWorkspace;
 class RootFolder extends FileEntry
 {
     protected $id = null;
+
     protected $appends = ['name'];
+
     protected $casts = [];
+
     protected $relations = ['users'];
 
     protected $attributes = [

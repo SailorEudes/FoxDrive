@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class UpdateUsersTableToV2 extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -19,17 +18,17 @@ class UpdateUsersTableToV2 extends Migration
                 $table->renameColumn('name', 'username');
             }
 
-            if ( ! Schema::hasColumn('users', 'first_name')) {
+            if (! Schema::hasColumn('users', 'first_name')) {
                 $table->string('first_name')->nullable();
                 $table->string('last_name')->nullable();
                 $table->text('permissions')->nullable();
             }
 
-            if ( ! Schema::hasColumn('users', 'card_brand')) {
+            if (! Schema::hasColumn('users', 'card_brand')) {
                 $table->string('card_brand')->nullable();
             }
 
-            if ( ! Schema::hasColumn('users', 'card_last_four')) {
+            if (! Schema::hasColumn('users', 'card_last_four')) {
                 $table->string('card_last_four')->nullable();
             }
         });
@@ -51,4 +50,4 @@ class UpdateUsersTableToV2 extends Migration
             $table->dropColumn('card_last_four');
         });
     }
-}
+};

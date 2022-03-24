@@ -18,6 +18,7 @@ class EncryptCookies extends BaseEncrypter
         if ($name === slugify(config('app.name')).'_activeWorkspace') {
             return true;
         }
+
         return parent::isDisabled($name);
     }
 }

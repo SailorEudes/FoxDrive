@@ -12,7 +12,7 @@ class DriveUploadResponseTransformer
      */
     public function transform($response)
     {
-        if ( ! empty(Arr::get($response, 'fileEntry.users'))) {
+        if (! empty(Arr::get($response, 'fileEntry.users'))) {
             $response['fileEntry'] = app(SetPermissionsOnEntry::class)->execute($response['fileEntry']);
 
             if (isset($response['fileEntry']['parent']['users'])) {

@@ -60,6 +60,9 @@ class Subscription extends Model
     ];
 
     protected $casts = [
+        'trial_ends_at' => 'datetime',
+        'ends_at' => 'datetime',
+        'renews_at' => 'datetime',
         'id' => 'integer',
         'plan_id' => 'integer',
         'quantity' => 'integer'
@@ -85,15 +88,7 @@ class Subscription extends Model
         return $this->cancelled();
     }
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'trial_ends_at', 'ends_at', 'renews_at',
-        'created_at', 'updated_at',
-    ];
+
 
     public function user()
     {

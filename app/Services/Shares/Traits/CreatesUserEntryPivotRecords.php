@@ -25,12 +25,12 @@ trait CreatesUserEntryPivotRecords
             $this->loadChildEntries($entries)->pluck('id') :
             $entries;
 
-        $records = $users->map(function($user) use($entriesAndChildren, $now) {
-            return $entriesAndChildren->map(function($entry) use($user, $now) {
+        $records = $users->map(function ($user) use ($entriesAndChildren, $now) {
+            return $entriesAndChildren->map(function ($entry) use ($user, $now) {
                 return [
                     'model_id' => $user['id'],
                     'model_type' => User::class,
-                    'file_entry_id' => is_numeric($entry) ? $entry :  $entry->id,
+                    'file_entry_id' => is_numeric($entry) ? $entry : $entry->id,
                     'permissions' => json_encode($user['permissions']),
                     'created_at' => $now,
                     'updated_at' => $now,
@@ -46,8 +46,8 @@ trait CreatesUserEntryPivotRecords
             ->whereIn('file_entry_id', $records->pluck('file_entry_id'))
             ->get();
 
-        return $records->filter(function($new) use($existing) {
-            return ! $existing->contains(function($current) use($new) {
+        return $records->filter(function ($new) use ($existing) {
+            return ! $existing->contains(function ($current) use ($new) {
                 return $current->file_entry_id === $new['file_entry_id'];
             });
         });

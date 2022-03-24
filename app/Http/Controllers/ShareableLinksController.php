@@ -45,7 +45,9 @@ class ShareableLinksController extends BaseController
             ->execute($idOrHash, $this->request->all());
 
         $link = $response['link'];
-        if ( ! $link || ! $link->entry || $link->entry->trashed()) abort(404);
+        if (! $link || ! $link->entry || $link->entry->trashed()) {
+            abort(404);
+        }
 
         $this->authorize('show', $link);
 

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class MergeFilesAndFoldersTables extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,7 +12,7 @@ class MergeFilesAndFoldersTables extends Migration
      */
     public function up()
     {
-        Schema::table('file_entries', function(Blueprint $table) {
+        Schema::table('file_entries', function (Blueprint $table) {
             $column = $table->string('path', 255)->nullable()->index();
             $column->collation = 'latin1_bin';
 
@@ -40,10 +39,10 @@ class MergeFilesAndFoldersTables extends Migration
      */
     public function down()
     {
-        Schema::table('files_entries', function(Blueprint $table) {
+        Schema::table('files_entries', function (Blueprint $table) {
             $table->removeColumn('type');
             $table->string('mime', 50)->nullable();
             $table->string('uuid', 20)->unique()->change();
         });
     }
-}
+};

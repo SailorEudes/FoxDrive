@@ -5,8 +5,7 @@ use Common\Files\Traits\GetsEntryTypeFromMime;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Collection;
 
-class TransformFileEntriesRecordsToV2 extends Migration
-{
+return new class extends Migration {
     use GetsEntryTypeFromMime;
 
     /**
@@ -18,8 +17,8 @@ class TransformFileEntriesRecordsToV2 extends Migration
     {
         FileEntry::orderBy('id', 'desc')
             ->with('parent')
-            ->chunk(50, function(Collection $entries) {
-                $entries->each(function(FileEntry $entry) {
+            ->chunk(50, function (Collection $entries) {
+                $entries->each(function (FileEntry $entry) {
                     $pathinfo = pathinfo($entry->file_name);
 
                     $entry->update([
@@ -33,7 +32,7 @@ class TransformFileEntriesRecordsToV2 extends Migration
                         'extension' => isset($pathinfo['extension']) ? $pathinfo['extension'] : null,
 
                         // generate "path" column value
-                        'path' => $this->generatePath($entry)
+                        'path' => $this->generatePath($entry),
                     ]);
                 });
             });
@@ -41,22 +40,28 @@ class TransformFileEntriesRecordsToV2 extends Migration
 
     private function generateType(FileEntry $entry)
     {
-        if ($entry->type === 'folder') return 'folder';
+        if ($entry->type === 'folder') {
+            return 'folder';
+        }
 
-        if ( ! $entry->mime) return null;
+        if (! $entry->mime) {
+            return null;
+        }
 
         return $this->getTypeFromMime($entry->mime);
     }
 
     private function generatePath(FileEntry $entry)
     {
-        if ($entry->path) return $entry->path;
+        if ($entry->path) {
+            return $entry->path;
+        }
 
-        if ( ! $entry->parent) {
+        if (! $entry->parent) {
             return $entry->id;
         }
 
-        return $entry->parent->path . '/' . $entry->id;
+        return $entry->parent->path.'/'.$entry->id;
     }
 
     /**
@@ -68,4 +73,4 @@ class TransformFileEntriesRecordsToV2 extends Migration
     {
         //
     }
-}
+};

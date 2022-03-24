@@ -41,7 +41,7 @@ class CreateDemoAccounts extends Command
         for ($i = 0; $i <= $this->numOfAccounts; $i++) {
             $number = str_pad($i, 3, '0', STR_PAD_LEFT);
             $user = new User([
-                'username' => "admin",
+                'username' => 'admin',
                 'email' => "admin@demo{$number}.com",
                 'first_name' => 'Demo',
                 'last_name' => 'Admin',

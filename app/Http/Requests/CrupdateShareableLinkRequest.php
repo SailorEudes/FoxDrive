@@ -34,7 +34,7 @@ class CrupdateShareableLinkRequest extends BaseFormRequest
             'allowDownload' => 'boolean',
             'allowEdit' => 'boolean',
             'expiresAt' => 'nullable|date',
-            'password' => 'nullable|string'
+            'password' => 'nullable|string',
         ];
     }
 }

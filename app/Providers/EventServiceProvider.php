@@ -47,7 +47,7 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        FolderTotalSizeSubscriber::class
+        FolderTotalSizeSubscriber::class,
     ];
 
     /**
@@ -63,8 +63,18 @@ class EventServiceProvider extends ServiceProvider
             Event::listen(UserCreated::class, HydrateUserWithSampleDriveContents::class);
         }
 
-        Event::listen(UserCreated::class, function(UserCreated $event) {
+        Event::listen(UserCreated::class, function (UserCreated $event) {
             app(SubscribeUserToNotifications::class)->execute($event->user, null);
         });
+    }
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     *
+     * @return bool
+     */
+    public function shouldDiscoverEvents()
+    {
+        return false;
     }
 }

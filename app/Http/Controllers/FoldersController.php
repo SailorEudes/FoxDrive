@@ -67,7 +67,7 @@ class FoldersController extends BaseController
             $folder = app(CreateFolder::class)->execute([
                 'name' => $name,
                 'parentId' => $parentId,
-                'ownerId' => Auth::id()
+                'ownerId' => Auth::id(),
             ]);
         } catch (FolderExistsException $e) {
             return $this->error('', ['name' => __('Folder with same name already exists.')]);
@@ -76,7 +76,7 @@ class FoldersController extends BaseController
         event(new FileEntryCreated($folder, $this->request->all()));
 
         return $this->success([
-            'folder' => app(SetPermissionsOnEntry::class)->execute($folder->load('users'))
+            'folder' => app(SetPermissionsOnEntry::class)->execute($folder->load('users')),
         ]);
     }
 }

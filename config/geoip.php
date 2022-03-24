@@ -78,7 +78,7 @@ return [
             'continent_path' => storage_path('app/continents.json'),
             'lang' => 'en',
         ],
-        
+
         'ipgeolocation' => [
             'class' => IPGeoLocation::class,
             'secure' => true,

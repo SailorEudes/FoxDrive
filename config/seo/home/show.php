@@ -15,7 +15,7 @@ return [
     ],
     [
         'property' => 'keywords',
-        'content' => 'files, secure, cloud, storage'
+        'content' => 'files, secure, cloud, storage',
     ],
     [
         'property' => 'og:type',

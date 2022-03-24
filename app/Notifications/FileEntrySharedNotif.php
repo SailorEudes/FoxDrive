@@ -49,13 +49,13 @@ class FileEntrySharedNotif extends Notification implements ShouldQueue
             ->subject(__('Files shared on :siteName', ['siteName' => config('app.name')]))
             ->line($this->getFirstLine());
 
-            foreach ($this->getFileLines() as $line) {
-                $message->line('- ' . $line['content']);
-            }
+        foreach ($this->getFileLines() as $line) {
+            $message->line('- '.$line['content']);
+        }
 
-            $message->action(__('View now'), url('drive/shares'));
+        $message->action(__('View now'), url('drive/shares'));
 
-            return $message;
+        return $message;
     }
 
     public function toFcm($notifiable)

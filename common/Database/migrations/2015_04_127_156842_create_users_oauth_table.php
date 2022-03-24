@@ -23,7 +23,7 @@ class CreateUsersOauthTable extends Migration {
 			$table->timestamps();
 
 			$table->index('user_id');
-			$table->unique(array('user_id', 'service'));
+			$table->unique(['user_id', 'service']);
 
             $table->collation = config('database.connections.mysql.collation');
             $table->charset = config('database.connections.mysql.charset');

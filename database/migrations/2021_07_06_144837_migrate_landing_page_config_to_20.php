@@ -3,8 +3,7 @@
 use Common\Settings\Settings;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrateLandingPageConfigTo20 extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -44,4 +43,4 @@ class MigrateLandingPageConfigTo20 extends Migration
     {
         //
     }
-}
+};

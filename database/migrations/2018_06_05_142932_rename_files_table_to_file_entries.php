@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class RenameFilesTableToFileEntries extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,7 +12,7 @@ class RenameFilesTableToFileEntries extends Migration
      */
     public function up()
     {
-        Schema::table('files', function(Blueprint $table) {
+        Schema::table('files', function (Blueprint $table) {
             $table->rename('file_entries');
         });
     }
@@ -25,8 +24,8 @@ class RenameFilesTableToFileEntries extends Migration
      */
     public function down()
     {
-        Schema::table('file_entries', function(Blueprint $table) {
+        Schema::table('file_entries', function (Blueprint $table) {
             $table->rename('files');
         });
     }
-}
+};

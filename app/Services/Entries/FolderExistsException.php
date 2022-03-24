@@ -2,6 +2,7 @@
 
 namespace App\Services\Entries;
 
-class FolderExistsException extends \Exception {
+class FolderExistsException extends \Exception
+{
     //
 }
