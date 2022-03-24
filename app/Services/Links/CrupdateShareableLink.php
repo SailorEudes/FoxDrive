@@ -3,8 +3,8 @@
 namespace App\Services\Links;
 
 use App\ShareableLink;
-use Carbon\Carbon;
 use Arr;
+use Carbon\Carbon;
 use Str;
 
 class CrupdateShareableLink
@@ -29,7 +29,8 @@ class CrupdateShareableLink
      * @param ShareableLink $link
      * @return ShareableLink|\Illuminate\Database\Eloquent\Model
      */
-    public function execute($params, ShareableLink $link = null) {
+    public function execute($params, ShareableLink $link = null)
+    {
         if ($link) {
             $link->fill($this->transformParams($params))->save();
         } else {

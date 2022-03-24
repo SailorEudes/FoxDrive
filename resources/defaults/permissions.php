@@ -12,7 +12,7 @@ return [
                 'links.create',
                 'workspaces.create',
                 'notifications.subscribe',
-            ]
+            ],
         ],
         [
             'guests' => true,
@@ -20,8 +20,8 @@ return [
             'name' => 'guests',
             'permissions' => [
                 'links.view',
-            ]
-        ]
+            ],
+        ],
     ],
     'all' => [
         'links' => [
@@ -38,7 +38,6 @@ return [
         ],
         'notifications' => [
             ['name' => 'notifications.subscribe', 'description' => 'Allows agents to subscribe to various conversation notifications.'],
-        ]
-    ]
+        ],
+    ],
 ];
-

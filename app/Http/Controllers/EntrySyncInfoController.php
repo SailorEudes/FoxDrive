@@ -41,7 +41,7 @@ class EntrySyncInfoController extends BaseController
             ->whereIn('file_name', $this->request->get('fileNames'))
             ->select(['file_name', 'file_entries.updated_at', 'file_entries.id', 'type'])
             ->get()
-            ->map(function(FileEntry $entry) {
+            ->map(function (FileEntry $entry) {
                 return $entry->setAppends([]);
             });
 

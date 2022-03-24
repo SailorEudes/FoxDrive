@@ -78,12 +78,12 @@ class FetchDriveEntries
         );
         $starredOnly = $this->getBoolParam('starredOnly');
         $recentOnly = $this->getBoolParam('recentOnly');
-        $this->sharedByMe = !!$this->filters->getAndRemove('sharedByMe');
+        $this->sharedByMe = (bool) $this->filters->getAndRemove('sharedByMe');
         $this->sharedOnly =
             $this->getBoolParam('sharedOnly') ||
-            !!$this->filters->getAndRemove('owner_id', '!=', Auth::id());
+            (bool) $this->filters->getAndRemove('owner_id', '!=', Auth::id());
         $this->searching =
-            Arr::get($params, 'query') || !$this->filters->empty();
+            Arr::get($params, 'query') || ! $this->filters->empty();
         $entryIds = Arr::get($params, 'entryIds');
         $parentIds = Arr::get($params, 'parentIds');
 
@@ -97,13 +97,13 @@ class FetchDriveEntries
         // fetch only entries that are children of specified parent,
         // in trash, show files/folders if their parent is not trashed
         if (
-            !$this->showTrashedOnly() &&
-            !$starredOnly &&
-            !$recentOnly &&
-            !$this->searching &&
-            !$this->sharedOnly &&
-            !$this->sharedByMe &&
-            !$entryIds
+            ! $this->showTrashedOnly() &&
+            ! $starredOnly &&
+            ! $recentOnly &&
+            ! $this->searching &&
+            ! $this->sharedOnly &&
+            ! $this->sharedByMe &&
+            ! $entryIds
         ) {
             if ($parentIds) {
                 $this->builder->whereIn('parent_id', explode(',', $parentIds));
@@ -158,7 +158,7 @@ class FetchDriveEntries
 
         // order by name in case updated_at date is the same
         $orderCol = $this->builder->getQuery()->orders[0]['column'] ?? null;
-        if (!is_string($orderCol) || $orderCol != 'name') {
+        if (! is_string($orderCol) || $orderCol != 'name') {
             $this->builder->orderBy('name', 'asc');
         }
 
@@ -177,15 +177,15 @@ class FetchDriveEntries
     protected function setActiveFolder(array $params)
     {
         if (array_key_exists('folderId', $params)) {
-            if (!$params['folderId'] || is_numeric($params['folderId'])) {
+            if (! $params['folderId'] || is_numeric($params['folderId'])) {
                 $folderId = (int) $params['folderId'];
-                // it's a folder hash, need to decode it
+            // it's a folder hash, need to decode it
             } else {
                 $folderId = $this->entry->decodeHash($params['folderId']);
             }
 
             // if no folderId specified, assume root folder
-            $activeFolder = !$folderId
+            $activeFolder = ! $folderId
                 ? new RootFolder()
                 : $this->entry->with('users')->find($folderId);
             $this->activeFolder = $this->setPermissionsOnEntry->execute(
@@ -236,7 +236,7 @@ class FetchDriveEntries
         }
 
         // check if "trashed" filter is active
-        return !!Arr::first($this->filters, function ($filter) {
+        return (bool) Arr::first($this->filters, function ($filter) {
             return $filter['key'] === 'deleted_at' &&
                 $filter['operator'] === '!=' &&
                 $filter['value'] === null;

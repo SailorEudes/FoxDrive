@@ -41,7 +41,7 @@ class ShareableLinkPasswordController extends BaseController
         $password = $this->request->get('password');
 
         return $this->success([
-            'matches' => Hash::check($password, $link->password)
+            'matches' => Hash::check($password, $link->password),
         ]);
     }
 }

@@ -37,7 +37,7 @@ class FolderTotalSizeSubscriber
             ->get()
             ->groupBy('parent_id');
 
-        $groupedEntries->each(function(Collection $entries, $parentId) use($event) {
+        $groupedEntries->each(function (Collection $entries, $parentId) use ($event) {
             $fileSize = $entries->sum('file_size');
             if (is_a($event, FileEntriesDeleted::class)) {
                 app(FileEntry::class)->where('id', $parentId)
@@ -46,7 +46,6 @@ class FolderTotalSizeSubscriber
             } else {
                 app(FileEntry::class)->where('id', $parentId)->increment('file_size', $fileSize);
             }
-
         });
     }
 
@@ -72,17 +71,17 @@ class FolderTotalSizeSubscriber
     {
         $events->listen(
             FileEntryCreated::class,
-            self::class . '@onEntryCreated'
+            self::class.'@onEntryCreated'
         );
 
         $events->listen(
             FileEntriesMoved::class,
-            self::class . '@onEntriesMoved'
+            self::class.'@onEntriesMoved'
         );
 
         $events->listen(
             [FileEntriesDeleted::class, FileEntriesRestored::class],
-            self::class . '@onEntriesDeletedOrRestored'
+            self::class.'@onEntriesDeletedOrRestored'
         );
     }
 }

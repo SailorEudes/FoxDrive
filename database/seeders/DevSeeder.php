@@ -20,11 +20,10 @@ class DevSeeder extends Seeder
         //DB::table('file_entries')->truncate();
         //DB::table('file_entry_models')->truncate();
 
-
         //$user = factory(User::class)->create();
         //$this->createChildFolders($user);
 
-        @ini_set("memory_limit", "-1");
+        @ini_set('memory_limit', '-1');
         @set_time_limit(0);
 
         $user = User::find(1);
@@ -35,7 +34,7 @@ class DevSeeder extends Seeder
     {
         $chunks = collect(array_fill(0, $amount, 0))->chunk(500);
 
-        $chunks->each(function() use($user, $type) {
+        $chunks->each(function () use ($user, $type) {
             $files = $type::factory()->count(500)->create([
                 'owner_id' => $user->id,
             ]);
@@ -47,9 +46,10 @@ class DevSeeder extends Seeder
         });
     }
 
-    private function createChildFolders(User $user) {
-        $user->folders()->limit(100)->chunk(200, function($folders) {
-            $folders->each(function($folder) {
+    private function createChildFolders(User $user)
+    {
+        $user->folders()->limit(100)->chunk(200, function ($folders) {
+            $folders->each(function ($folder) {
                 $child = Folder::factory()->create(['parent_id' => $folder]);
                 $child->generatePath();
 

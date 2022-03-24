@@ -2,11 +2,11 @@
 
 namespace App\Services\Links;
 
-use Auth;
 use App\FileEntry;
 use App\ShareableLink;
-use Illuminate\Support\Arr;
+use Auth;
 use Common\Database\Paginator;
+use Illuminate\Support\Arr;
 
 class GetShareableLink
 {
@@ -35,7 +35,7 @@ class GetShareableLink
      */
     public function execute($idOrHash, $params = [])
     {
-        if (is_integer($idOrHash) || ctype_digit($idOrHash)) {
+        if (is_int($idOrHash) || ctype_digit($idOrHash)) {
             $response['link'] = $this->getByEntryId($idOrHash);
         } else {
             $parts = explode(':', $idOrHash);

@@ -74,9 +74,9 @@ class HydrateUserWithSampleDriveContents
 
     private function createFiles($dirName, $parentId, $userId)
     {
-        $folderPath = $this->samplesPath . $dirName;
+        $folderPath = $this->samplesPath.$dirName;
 
-        if (!$this->fs->exists($folderPath)) {
+        if (! $this->fs->exists($folderPath)) {
             return;
         }
 

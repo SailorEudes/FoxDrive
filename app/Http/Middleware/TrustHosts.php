@@ -6,5 +6,4 @@ use Common\Core\BaseTrustHosts;
 
 class TrustHosts extends BaseTrustHosts
 {
-
 }

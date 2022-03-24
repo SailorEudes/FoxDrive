@@ -93,7 +93,7 @@ class SharesController extends BaseController
         $this->authorize('update', [FileEntry::class, $entryIds]);
 
         // TODO: refactor messages into custom validator, so can reuse elsewhere
-        $emails =  $this->request->get('emails', []);
+        $emails = $this->request->get('emails', []);
 
         $messages = [];
         foreach ($emails as $key => $email) {

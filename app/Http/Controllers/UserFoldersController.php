@@ -36,7 +36,7 @@ class UserFoldersController extends BaseController
         $query = $this->folder
             ->where('workspace_id', app(ActiveWorkspace::class)->id ?? null);
 
-        if ( ! app(ActiveWorkspace::class)->id) {
+        if (! app(ActiveWorkspace::class)->id) {
             $query->whereOwner($userId);
         }
 

@@ -16,7 +16,7 @@ return [
             ['type' => 'route', 'order' => 1, 'label' => 'Shared with me', 'action' => 'drive/shares', 'icon' => 'people'],
             ['type' => 'route', 'order' => 2, 'label' => 'Recent', 'action' => 'drive/recent', 'icon' => 'access-time'],
             ['type' => 'route', 'order' => 3, 'label' => 'Starred', 'action' => 'drive/starred', 'icon' => 'star'],
-            ['type' => 'route', 'order' => 4, 'label' => 'Trash', 'action' => 'drive/trash', 'icon' => 'delete']
+            ['type' => 'route', 'order' => 4, 'label' => 'Trash', 'action' => 'drive/trash', 'icon' => 'delete'],
         ]],
         ['name' => 'Drive Navbar', 'position' => 'drive-navbar', 'items' => [
             ['type' => 'route', 'order' => 1, 'label' => 'Workspaces', 'action' => 'drive/workspaces'],
@@ -28,7 +28,7 @@ return [
                 ['type' => 'route', 'position' => 1, 'label' => 'Developers', 'action' => '/api-docs', 'condition' => 'auth'],
                 ['type' => 'route', 'position' => 2, 'label' => 'Privacy Policy', 'action' => '/pages/1/privacy-policy'],
                 ['type' => 'route', 'position' => 3, 'label' => 'Terms of Service', 'action' => '/pages/2/terms-of-service'],
-                ['type' => 'route', 'position' => 4, 'label' => 'Contact Us', 'action' => '/contact']
+                ['type' => 'route', 'position' => 4, 'label' => 'Contact Us', 'action' => '/contact'],
             ],
         ],
         [
@@ -40,7 +40,7 @@ return [
                 ['type' => 'link', 'position' => 3, 'icon' => 'instagram', 'action' => 'https://instagram.com'],
                 ['type' => 'link', 'position' => 4, 'icon' => 'youtube', 'action' => 'https://youtube.com'],
             ],
-        ]
+        ],
     ])],
 
     //uploads
@@ -69,30 +69,30 @@ return [
             [
                 'title' => 'Store any file',
                 'subtitle' => 'Keep photos, stories, designs, drawings, recordings, videos, and more. Your first 15 GB of storage are free.',
-                'image' => 'upload.svg'
+                'image' => 'upload.svg',
             ],
             [
                 'title' => 'See your stuff anywhere',
                 'subtitle' => 'Your files in BeDrive can be reached from any smartphone, tablet, or computer.',
-                'image' => 'web-devices.svg'
+                'image' => 'web-devices.svg',
             ],
             [
                 'title' => 'Share files and folders',
                 'subtitle' => 'You can quickly invite others to view, download, and collaborate on all the files you want.',
-                'image' => 'share.svg'
-            ]
+                'image' => 'share.svg',
+            ],
         ],
         'secondaryFeatures' => [
             [
                 'title' => 'Keep your files safe',
                 'image' => 'client/assets/images/homepage/homepage-feature-1.jpg',
-                'description' => 'If something happens to your device, you don\'t have to worry about losing your files or photos – they\'re in your BeDrive. And BeDrive is encrypted using SSL.'
+                'description' => 'If something happens to your device, you don\'t have to worry about losing your files or photos – they\'re in your BeDrive. And BeDrive is encrypted using SSL.',
             ],
             [
                 'title' => 'Reliable storage and fast transfers',
                 'image' => 'client/assets/images/homepage/homepage-feature-2.jpg',
-                'description' => 'We make secure cloud storage simple and convenient. Create a free BeDrive account today!'
-            ]
+                'description' => 'We make secure cloud storage simple and convenient. Create a free BeDrive account today!',
+            ],
         ],
     ])],
 

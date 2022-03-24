@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->tag->firstOrCreate([
             'name' => 'starred',
             'display_name' => 'Starred',
-            'type' => 'label'
+            'type' => 'label',
         ]);
 
         $this->call(WorkspaceRoleSeeder::class);

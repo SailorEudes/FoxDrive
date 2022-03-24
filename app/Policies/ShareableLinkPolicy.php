@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use Hash;
-use App\User;
 use App\FileEntry;
 use App\ShareableLink;
+use App\User;
+use Hash;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ShareableLinkPolicy

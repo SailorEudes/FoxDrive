@@ -10,7 +10,7 @@ class Folder extends FileEntry
     use HasFactory;
 
     protected $attributes = [
-        'type' => 'folder'
+        'type' => 'folder',
     ];
 
     protected static function boot()

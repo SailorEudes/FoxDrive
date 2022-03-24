@@ -28,7 +28,7 @@ class MoveFileEntriesController extends BaseController
         $this->entry = $entry;
     }
 
-    public function move( SetPermissionsOnEntry $setPermissions)
+    public function move(SetPermissionsOnEntry $setPermissions)
     {
         //should limit moves to 30 items (for now) for performance reasons
         $entryIds = collect($this->request->get('entryIds'))->take(30);
@@ -37,7 +37,7 @@ class MoveFileEntriesController extends BaseController
         $this->validate($this->request, [
             'entryIds' => 'required|array',
             'entryIds.*' => 'required|integer',
-            'destination' => 'nullable|integer|exists:file_entries,id'
+            'destination' => 'nullable|integer|exists:file_entries,id',
         ]);
 
         $this->authorize('update', [FileEntry::class, $entryIds->toArray()]);
@@ -47,15 +47,17 @@ class MoveFileEntriesController extends BaseController
         $entries = $this->removeInvalidEntries($entries, $newParent);
 
         // there was an issue with entries or parent, bail
-        if ($entries->isEmpty()) return $this->error();
+        if ($entries->isEmpty()) {
+            return $this->error();
+        }
 
         $this->updateParent($destination, $entries);
         $source = $entries->first()->parent_id;
 
-        $entries->each(function(FileEntry $entry) use($newParent, $destination) {
+        $entries->each(function (FileEntry $entry) use ($newParent, $destination) {
             $entry->parent_id = $destination;
             $oldPath = $entry->path;
-            $newPath = !$newParent ? '' : $newParent->path;
+            $newPath = ! $newParent ? '' : $newParent->path;
             $oldParent = last(explode('/', $oldPath));
             $newPath .= "/$oldParent";
             $this->entry->updatePaths($oldPath, $newPath);
@@ -64,7 +66,7 @@ class MoveFileEntriesController extends BaseController
 
         event(new FileEntriesMoved($entries->pluck('id')->toArray(), $destination, $source));
 
-        $entries = $entries->map(function(FileEntry $entry) use($setPermissions) {
+        $entries = $entries->map(function (FileEntry $entry) use ($setPermissions) {
             return $setPermissions->execute($entry);
         });
 
@@ -80,9 +82,11 @@ class MoveFileEntriesController extends BaseController
      */
     private function removeInvalidEntries(Collection $entries, $parent)
     {
-        if ( ! $parent) return $entries;
+        if (! $parent) {
+            return $entries;
+        }
 
-        return $entries->filter(function($entry) use($parent) {
+        return $entries->filter(function ($entry) use ($parent) {
             return ! Str::contains($parent->path, $entry->id);
         });
     }
@@ -93,7 +97,10 @@ class MoveFileEntriesController extends BaseController
      */
     private function getNewParent($destination)
     {
-        if ( ! $destination) return null;
+        if (! $destination) {
+            return null;
+        }
+
         return $this->entry->select('path', 'id')->find($destination);
     }
 

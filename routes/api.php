@@ -28,8 +28,8 @@ use Common\Files\Controllers\RestoreDeletedEntriesController;
 use Common\Localizations\LocalizationsController;
 use Common\Notifications\NotificationSubscriptionsController;
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::group(['prefix' => 'v1'], function () {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
         // SHARING
         Route::post('entries/add-users', [SharesController::class, 'addUsers']);
         Route::post('entries/remove-user/{userId}', [SharesController::class, 'removeUser']);
@@ -90,4 +90,3 @@ Route::group(['prefix' => 'v1'], function() {
     // LOCALIZATIONS
     Route::get('localizations/{name}', [LocalizationsController::class, 'show']);
 });
-

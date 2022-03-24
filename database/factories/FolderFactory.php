@@ -24,7 +24,7 @@ class FolderFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->realTextBetween(100, 1000),
-            'type' => 'folder'
+            'type' => 'folder',
         ];
     }
 }

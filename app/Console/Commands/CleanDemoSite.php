@@ -153,7 +153,7 @@ class CleanDemoSite extends Command
             ->where('email', $email)
             ->first();
 
-        if (!$admin) {
+        if (! $admin) {
             return;
         }
 

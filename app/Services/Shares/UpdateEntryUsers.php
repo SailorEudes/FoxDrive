@@ -2,11 +2,11 @@
 
 namespace App\Services\Shares;
 
+use App\Services\Shares\Traits\CreatesUserEntryPivotRecords;
+use App\Services\Shares\Traits\GeneratesSharePermissions;
+use Common\Files\Traits\LoadsAllChildEntries;
 use DB;
 use Illuminate\Support\Arr;
-use Common\Files\Traits\LoadsAllChildEntries;
-use App\Services\Shares\Traits\GeneratesSharePermissions;
-use App\Services\Shares\Traits\CreatesUserEntryPivotRecords;
 
 class UpdateEntryUsers
 {
@@ -23,8 +23,9 @@ class UpdateEntryUsers
         $users = collect($users);
         $entries = collect($entries);
 
-        $users = $users->map(function($user) {
+        $users = $users->map(function ($user) {
             $user['permissions'] = $this->generateSharePermissions($user['permissions']);
+
             return $user;
         });
 
@@ -37,7 +38,7 @@ class UpdateEntryUsers
         );
 
         // filter out removed users, so they are not re-attached
-        $users = $users->filter(function($user) {
+        $users = $users->filter(function ($user) {
             return ! Arr::get($user, 'removed');
         });
 

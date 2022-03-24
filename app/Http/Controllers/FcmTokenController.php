@@ -13,7 +13,7 @@ class FcmTokenController extends BaseController
      */
     private $request;
 
-    public function __construct(Request  $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
     }

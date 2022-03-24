@@ -14,16 +14,16 @@ class AddWorkspaceIdColumnToWorkspaceableModels extends Migration
      */
     public function up()
     {
-       $models = array(FileEntry::class);
+        $models = [FileEntry::class];
 
-       foreach ($models as $model) {
-           $table = app($model)->getTable();
-           if (!Schema::hasColumn($table, 'workspace_id')) {
-               Schema::table($table, function (Blueprint $table) {
-                   $table->integer('workspace_id')->unsigned()->nullable()->index();
-               });
-           }
-       }
+        foreach ($models as $model) {
+            $table = app($model)->getTable();
+            if (! Schema::hasColumn($table, 'workspace_id')) {
+                Schema::table($table, function (Blueprint $table) {
+                    $table->integer('workspace_id')->unsigned()->nullable()->index();
+                });
+            }
+        }
     }
 
     /**

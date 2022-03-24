@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Collection;
 use Common\Files\Traits\HandlesEntryPaths;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Collection;
 
 class MoveFoldersIntoFileEntriesTable extends Migration
 {
@@ -15,11 +15,11 @@ class MoveFoldersIntoFileEntriesTable extends Migration
      */
     public function up()
     {
-        DB::table('folders')->orderBy('id')->chunk(50, function(Collection $folders) {
+        DB::table('folders')->orderBy('id')->chunk(50, function (Collection $folders) {
             $records = $folders
-                ->filter(function($folder) {
+                ->filter(function ($folder) {
                     return $folder->name !== 'root';
-                })->map(function($folder) {
+                })->map(function ($folder) {
                     return [
                         'name' => $folder->name,
                         'file_name' => str_random(40),
@@ -50,10 +50,10 @@ class MoveFoldersIntoFileEntriesTable extends Migration
         DB::table('file_entries')
             ->where('type', 'folder')
             ->orderBy('id', 'desc')
-            ->chunk(50, function(Collection $folders) {
+            ->chunk(50, function (Collection $folders) {
                 $names = $folders
                     ->pluck('path')
-                    ->map(function($path) {
+                    ->map(function ($path) {
                         return explode('/', $path);
                     })->flatten()->unique();
 
@@ -63,21 +63,22 @@ class MoveFoldersIntoFileEntriesTable extends Migration
                     ->whereIn('name', $names)
                     ->get();
 
-                $folders->each(function($folder) use($pathFolders) {
+                $folders->each(function ($folder) use ($pathFolders) {
                     // "root" prefix no longer needed in latest version
                     $path = str_replace('root/', '', $folder->path);
                     $userId = $folder->user_id;
 
                     // map folder names to ids "parent/child/folder" => "78/54/96"
-                    $pathIds = array_map(function($folderName) use($pathFolders, $userId) {
-                        $pathFolder = $pathFolders->first(function($folder) use($userId, $folderName) {
+                    $pathIds = array_map(function ($folderName) use ($pathFolders, $userId) {
+                        $pathFolder = $pathFolders->first(function ($folder) use ($userId, $folderName) {
                             return $folder->name === $folderName && $folder->user_id === $userId;
                         });
+
                         return $pathFolder ? $pathFolder->id : null;
                     }, explode('/', $path));
 
                     // encode ids to base36
-                    $encodedPathIds = array_map(function($id) {
+                    $encodedPathIds = array_map(function ($id) {
                         return base_convert($id, 10, 36);
                     }, $pathIds);
 
@@ -88,7 +89,7 @@ class MoveFoldersIntoFileEntriesTable extends Migration
                         ->where('id', $folder->id)
                         ->update([
                             'path' => implode('/', $encodedPathIds),
-                            'parent_id' => $pathCount > 1 ? $pathIds[$pathCount - 2] : null
+                            'parent_id' => $pathCount > 1 ? $pathIds[$pathCount - 2] : null,
                         ]);
 
                     // update parent_id of all folder children
@@ -96,11 +97,9 @@ class MoveFoldersIntoFileEntriesTable extends Migration
                     DB::table('file_entries')
                         ->where('parent_id', $oldId)
                         ->update(['parent_id' => $folder->id]);
-
                 });
             });
     }
-
 
     /**
      * Reverse the migrations.

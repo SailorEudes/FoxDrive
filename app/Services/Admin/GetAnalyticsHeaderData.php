@@ -64,7 +64,7 @@ class GetAnalyticsHeaderData implements GetAnalyticsHeaderDataAction
                 'name' => 'Total Space Used',
                 'type' => 'fileSize',
                 'value' => (int) $this->file->sum('file_size'),
-            ]
+            ],
         ];
     }
 }

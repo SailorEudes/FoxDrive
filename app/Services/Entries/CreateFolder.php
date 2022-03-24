@@ -32,7 +32,7 @@ class CreateFolder
             ->whereOwner($ownerId)
             ->first();
 
-        if ( ! is_null($exists)) {
+        if (! is_null($exists)) {
             throw new FolderExistsException();
         }
 

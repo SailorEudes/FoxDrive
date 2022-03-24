@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $user_id
  * @property int $entry_id
- * @property boolean $allow_edit
- * @property boolean $allow_download
+ * @property bool $allow_edit
+ * @property bool $allow_download
  * @property string $password
  * @property-read  FileEntry $entry
  */
@@ -26,7 +26,7 @@ class ShareableLink extends Model
         'entry_id' => 'integer',
         'id' => 'integer',
         'allow_download' => 'boolean',
-        'allow_edit' => 'boolean'
+        'allow_edit' => 'boolean',
     ];
 
     /**

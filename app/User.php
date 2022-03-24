@@ -40,8 +40,10 @@ class User extends BaseUser
                     ->where('device_id', $this->currentAccessToken()->name)
                     ->first()->token ?? null;
             $this['fcm_token'] = $token;
+
             return $token;
         }
+
         return null;
     }
 }

@@ -111,7 +111,7 @@ return [
         ],
         '*' => [
             'multi_date_format' => 'This is not a valid date format.',
-        ]
+        ],
     ],
 
     /*

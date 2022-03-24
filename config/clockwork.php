@@ -130,7 +130,7 @@ return [
 
     'filter_uris' => [
         '/horizon/.*', // Laravel Horizon requests
-        '/telescope/.*' // Laravel Telescope requests
+        '/telescope/.*', // Laravel Telescope requests
     ],
 
     /*
@@ -170,7 +170,7 @@ return [
     'serialization_blackbox' => [
         \Illuminate\Container\Container::class,
         \Illuminate\Foundation\Application::class,
-        \Laravel\Lumen\Application::class
+        \Laravel\Lumen\Application::class,
     ],
 
     /*
@@ -230,6 +230,6 @@ return [
     |
     */
 
-    'server_timing' => env('CLOCKWORK_SERVER_TIMING', 10)
+    'server_timing' => env('CLOCKWORK_SERVER_TIMING', 10),
 
 ];

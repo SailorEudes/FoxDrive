@@ -2,5 +2,5 @@
 
 return [
     //sitemap
-    ['method' => 'POST', 'name' => 'admin/sitemap/generate']
+    ['method' => 'POST', 'name' => 'admin/sitemap/generate'],
 ];

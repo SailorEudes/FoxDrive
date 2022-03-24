@@ -37,22 +37,22 @@ class WorkspaceRoleSeeder extends Seeder
             ]);
             $role->permissions()->sync($permissions);
 
-            $editorPermissions = $permissions->filter(function(Permission $permission) {
+            $editorPermissions = $permissions->filter(function (Permission $permission) {
                 return $permission->group !== 'workspace_members';
             });
             $role = $this->role->create([
                 'name' => 'Workspace Editor',
-                'description' => "Add, edit, move and delete workspace files.",
+                'description' => 'Add, edit, move and delete workspace files.',
                 'type' => 'workspace',
             ]);
             $role->permissions()->sync($editorPermissions);
 
-            $memberPermissions = $permissions->filter(function(Permission $permission) {
+            $memberPermissions = $permissions->filter(function (Permission $permission) {
                 return $permission->group !== 'workspace_members' && Str::endsWith($permission->name, 'view');
             });
             $role = $this->role->create([
                 'name' => 'Workspace Contributor',
-                'description' => "Add and edit files.",
+                'description' => 'Add and edit files.',
                 'type' => 'workspace',
             ]);
             $role->permissions()->sync($memberPermissions);

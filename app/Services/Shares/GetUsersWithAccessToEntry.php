@@ -2,8 +2,8 @@
 
 namespace App\Services\Shares;
 
-use App\User;
 use App\FileEntry;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 
 class GetUsersWithAccessToEntry
