@@ -67,4 +67,15 @@ class EventServiceProvider extends ServiceProvider
             app(SubscribeUserToNotifications::class)->execute($event->user, null);
         });
     }
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     *
+     * @return bool
+     */
+    public function shouldDiscoverEvents()
+    {
+        return false;
+    }
 }
+
