@@ -4,8 +4,7 @@ use Common\Files\Traits\HandlesEntryPaths;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Collection;
 
-return new class extends Migration
-{
+return new class extends Migration {
     use HandlesEntryPaths;
 
     /**

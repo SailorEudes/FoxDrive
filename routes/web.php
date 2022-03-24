@@ -20,11 +20,11 @@ use App\Http\Controllers\MoveFileEntriesController;
 use App\Http\Controllers\ShareableLinkPasswordController;
 use App\Http\Controllers\ShareableLinkPreviewController;
 use App\Http\Controllers\ShareableLinksController;
+use App\Http\Controllers\SharesController;
+use App\Http\Controllers\SpaceUsageController;
 use App\Http\Controllers\StarredEntriesController;
 use App\Http\Controllers\UserFoldersController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SharesController;
-use App\Http\Controllers\SpaceUsageController;
 
 Route::prefix('secure/drive')->middleware('web')->group(function () {
     Route::middleware('auth')->group(function () {

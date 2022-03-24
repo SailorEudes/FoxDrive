@@ -13,11 +13,10 @@
 
 use App\Http\Controllers\CopyEntriesController;
 use App\Http\Controllers\DriveEntriesController;
-use App\Http\Controllers\MoveFileEntriesController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntrySyncInfoController;
 use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FoldersController;
+use App\Http\Controllers\MoveFileEntriesController;
 use App\Http\Controllers\ShareableLinksController;
 use App\Http\Controllers\SharesController;
 use App\Http\Controllers\SpaceUsageController;
@@ -31,6 +30,7 @@ use Common\Files\Controllers\FileEntriesController;
 use Common\Files\Controllers\RestoreDeletedEntriesController;
 use Common\Localizations\LocalizationsController;
 use Common\Notifications\NotificationSubscriptionsController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {

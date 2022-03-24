@@ -5,8 +5,7 @@ use Common\Files\Traits\GetsEntryTypeFromMime;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Collection;
 
-return new class extends Migration
-{
+return new class extends Migration {
     use GetsEntryTypeFromMime;
 
     /**
