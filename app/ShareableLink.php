@@ -19,9 +19,9 @@ class ShareableLink extends Model
 {
     protected $guarded = ['id'];
 
-    protected $dates = ['expires_at'];
 
     protected $casts = [
+        'expires_at' => 'datetime',
         'user_id' => 'integer',
         'entry_id' => 'integer',
         'id' => 'integer',
